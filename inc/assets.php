@@ -38,6 +38,7 @@ function enqueue_assets() : void {
 				'wp-blocks',
 				'wp-components',
 				'wp-element',
+				'wp-i18n',
 			],
 			'handle'  => 'simple-editorial-comments',
 		]
