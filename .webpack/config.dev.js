@@ -21,7 +21,7 @@ module.exports = choosePort( 9090 ).then( ( port ) => {
 			'simple-editorial-comments': filePath( 'src/index.js' ),
 		},
 		output: {
-			filename: '[name].[contenthash].js',
+			filename: '[name].[hash].js',
 		},
 	} );
 } );
