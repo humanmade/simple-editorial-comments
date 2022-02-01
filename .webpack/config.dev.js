@@ -1,4 +1,4 @@
-const { helpers, presets } = require( '@humanmade/webpack-helpers' );
+const { externals, helpers, presets } = require( '@humanmade/webpack-helpers' );
 
 const { choosePort, cleanOnExit, filePath } = helpers;
 
@@ -17,6 +17,7 @@ module.exports = choosePort( 9090 ).then( ( port ) => {
 				ignored: [ /.*\.php/, /node_modules/ ],
 			},
 		},
+		externals,
 		entry: {
 			'simple-editorial-comments': filePath( 'src/index.js' ),
 		},
