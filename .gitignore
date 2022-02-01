@@ -4,3 +4,4 @@ vendor/
 
 # Built files
 build/
+package-lock.json

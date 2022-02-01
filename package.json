@@ -3,9 +3,19 @@
   "version": "0.1.0",
   "description": "A basic WordPress block allowing editors to leave comments that do not render on the frontend",
   "scripts": {
+    "build": "webpack --config=.webpack/config.prod.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "keywords": [ "wordpress", "gutenberg", "block-editor" ],
+  "keywords": [
+    "wordpress",
+    "gutenberg",
+    "block-editor"
+  ],
   "author": "Human Made",
-  "license": "GPL-3.0"
+  "license": "GPL-3.0",
+  "devDependencies": {
+    "@humanmade/webpack-helpers": "^0.11.1",
+    "webpack": "^4.46.0",
+    "webpack-cli": "^3.3.12"
+  }
 }
