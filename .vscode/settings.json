@@ -1,0 +1,10 @@
+{
+    "files.watcherExclude": {
+        "build/**": true,
+        "vendor/**": true
+    },
+    "search.exclude": {
+        "build/**": true,
+        "package-lock.json": true
+    }
+}
