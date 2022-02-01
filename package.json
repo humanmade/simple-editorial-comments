@@ -1,5 +1,5 @@
 {
-  "name": "simple-block-comments",
+  "name": "simple-editorial-comments",
   "version": "0.1.0",
   "description": "A basic WordPress block allowing editors to leave comments that do not render on the frontend",
   "scripts": {
