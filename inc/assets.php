@@ -37,6 +37,7 @@ function enqueue_assets() : void {
 			'dependencies' => [
 				'wp-blocks',
 				'wp-components',
+				'wp-edit-post',
 				'wp-element',
 				'wp-i18n',
 			],
