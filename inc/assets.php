@@ -44,4 +44,12 @@ function enqueue_assets() : void {
 			'handle'  => 'simple-editorial-comments',
 		]
 	);
+	Asset_Loader\enqueue_asset(
+		$manifest,
+		'simple-editorial-comments.css',
+		[
+			'dependencies' => [],
+			'handle' => 'simple-editorial-comments',
+		]
+	);
 }
