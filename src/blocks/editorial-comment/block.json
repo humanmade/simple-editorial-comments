@@ -13,6 +13,9 @@
 	"attributes": {
 		"comment": {
 			"type": "string"
+		},
+		"status": {
+			"type": "string"
 		}
 	}
 }

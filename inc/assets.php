@@ -30,6 +30,10 @@ function enqueue_assets() : void {
 		$plugin_path . 'build/production-asset-manifest.json',
 	] );
 
+	if ( ! $manifest ) {
+		return;
+	}
+
 	Asset_Loader\enqueue_asset(
 		$manifest,
 		'simple-editorial-comments.js',
