@@ -1,3 +1,7 @@
+# Depencies
 node_modules/
 vendor/
+
+# Built files
 *.min.js
+build/

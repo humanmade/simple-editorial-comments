@@ -1,5 +1,3 @@
-import React from 'react';
-
 import blockData from './block.json';
 import EditEditorialComment from './EditEditorialComment';
 
@@ -9,11 +7,6 @@ export const settings = {
 	// Apply the block settings from the JSON configuration file.
 	...blockData,
 
-	/**
-	 * Render the editor UI for this block inside an error boundary.
-	 *
-	 * @returns {React.ReactNode} Editorial interface to display in block editor.
-	 */
 	edit: EditEditorialComment,
 
 	/**
