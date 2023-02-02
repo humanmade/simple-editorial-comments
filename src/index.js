@@ -5,6 +5,8 @@
  */
 import { autoloadBlocks, autoloadPlugins } from '@humanmade/webpack-helpers/hmr';
 
+import './types';
+
 /**
  * Callback function to handle DevServer hot updates.
  *

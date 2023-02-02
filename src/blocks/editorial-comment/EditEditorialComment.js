@@ -3,14 +3,12 @@ import React from 'react';
 import { useBlockProps, RichText } from '@wordpress/block-editor';
 import { __ } from '@wordpress/i18n';
 
-import './style.scss';
+import './editorial-comment.scss';
 
 /**
  * Define the editor interface for an editorial comment.
  *
- * @param {object}   props               React component props.
- * @param {object}   props.attributes    Block attributes object.
- * @param {Function} props.setAttributes Block attribute setter function.
+ * @param {EditBlockComponentProps} props React component props.
  * @returns {React.ReactNode} Editor UI for the block.
  */
 const EditEditorialComment = ( { attributes, setAttributes } ) => {
