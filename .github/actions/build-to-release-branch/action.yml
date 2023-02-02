@@ -1,0 +1,57 @@
+name: Build to release branch
+description: Merge and build a source branch into a releasable, fully-built branch.
+
+inputs:
+  source_branch:
+    description: Name of source branch.
+    required: true
+  release_branch:
+    description: Name of target release branch. Will be updated with a merge commit including built code.
+    required: true
+  built_asset_paths:
+    description: Generated assets to include in release branch commit. Overrides .gitignore.
+    required: true
+  build_script:
+    description: Command to run to build code. "npm run build" by default.
+    required: false
+
+runs:
+  using: composite
+
+  steps:
+    - name: Configure git
+      shell: bash
+      run: |
+        git config user.name "Your friendly neighborhood GH Actions Bot"
+        git config user.email "<>"
+
+    - name: Check out release branch
+      uses: actions/checkout@v3
+      with:
+        ref: ${{ inputs.release_branch }}
+        fetch-depth: 0
+
+    - name: Merge source into release branch
+      shell: bash
+      # Simulate "-s theirs", which doesn't exist in git for sensible reasons
+      # which do not apply to our current situation.
+      # https://web.archive.org/web/20131126171744/http://www.seanius.net/blog/2011/02/git-merge-s-theirs/
+      run: |
+        git fetch origin ${{ inputs.source_branch }}
+        git fetch origin ${{ inputs.release_branch }}
+        git checkout ${{ inputs.source_branch }}
+        git checkout ${{ inputs.release_branch }}
+        git merge -s ours ${{ inputs.source_branch }}
+        git diff --binary ${{ inputs.source_branch }} | git apply -R --index
+        git commit --amend -m "Merge branch '${{ inputs.source_branch }}' into '${{ inputs.release_branch }}'"
+
+    - name: Build code
+      shell: bash
+      run: ${{ inputs.build_script }}
+
+    - name: Update release branch
+      shell: bash
+      run: |
+        git add -f ${{ inputs.built_asset_paths }}
+        git commit --amend -m "Build to '${{ inputs.release_branch }}' from ${{ inputs.source_branch }}#$( git rev-parse --short ${{ inputs.source_branch }} )"
+        git push origin ${{ inputs.release_branch }}:${{ inputs.release_branch }}

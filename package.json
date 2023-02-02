@@ -5,7 +5,9 @@
   "scripts": {
     "build": "webpack --config=.webpack/config.prod.js",
     "start": "webpack-dev-server --config=.webpack/config.dev.js",
-    "lint": "eslint . && composer lint",
+    "eslint": "eslint .",
+    "phpcs": "composer lint",
+    "lint": "npm run eslint && npm run phpcs",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [

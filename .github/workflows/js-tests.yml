@@ -1,0 +1,53 @@
+name: JavaScript Tests
+on:
+  push:
+    branches:
+      - 'main'
+    paths:
+      - '**.js'
+      - '**.json'
+  pull_request:
+    branches:
+      - '**'
+    paths:
+      - '**.js'
+      - '**.json'
+
+jobs:
+  build:
+    name: Test the Build
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v1
+
+      - uses: actions/setup-node@v3
+        with:
+          node-version: '16'
+
+      - name: Echo Node & NPM versions
+        run: |
+          node -v
+          npm -v
+
+      - name: Get npm cache directory
+        id: npm-cache-dir
+        run: |
+          echo "::set-output name=dir::$(npm config get cache)"
+          echo "::set-output name=npm-version::$(npm -v)"
+          echo "::set-output name=node-version::$(node-v)"
+
+      - name: Cache Dependencies
+        id: npm-cache
+        uses: actions/cache@v2
+        with:
+          path: ${{ steps.npm-cache-dir.outputs.dir }}
+          key: ${{ runner.os }}-npm-${{ steps.npm-cache-dir.outputs.node-version }}-${{ steps.npm-cache-dir.outputs.npm-version }}-${{ hashFiles('package-lock.json') }}
+
+      - name: Install Dependencies
+        run: npm install --legacy-peer-deps
+
+      - name: Run the build
+        run: |
+          npm run eslint
+          npm run build

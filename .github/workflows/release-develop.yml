@@ -1,0 +1,32 @@
+name: Develop Release
+
+on:
+  push:
+    branches:
+      - develop
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref_name }}
+  cancel-in-progress: true
+
+jobs:
+  release:
+    name: "Update release-develop branch"
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out
+        uses: actions/checkout@v3
+
+      - uses: actions/setup-node@v3
+        with:
+          node-version: '16'
+
+      - name: Merge and build
+        uses: ./.github/actions/build-to-release-branch
+        with:
+          source_branch: develop
+          release_branch: release-develop
+          built_asset_paths: build
+          build_script: |
+            npm ci
+            npm run build
