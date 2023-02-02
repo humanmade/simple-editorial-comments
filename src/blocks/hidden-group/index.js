@@ -75,6 +75,39 @@ export const settings = {
 					);
 				},
 			},
+			{
+				type: 'block',
+				isMultiBlock: true,
+				blocks: [ '*' ],
+				__experimentalConvert: ( blocks ) => {
+					// Clone the Blocks to be Grouped
+					// Failing to create new block references causes the original blocks
+					// to be replaced in the switchToBlockType call thereby meaning they
+					// are removed both from their original location and within the
+					// new group block.
+					const groupInnerBlocks = blocks.map( ( block ) => {
+						return createBlock(
+							block.name,
+							block.attributes,
+							block.innerBlocks
+						);
+					} );
+
+					return createBlock(
+						blockData.name,
+						{},
+						[
+							createBlock(
+								'simple-editorial-comments/editorial-comment',
+								{
+									comment: __( 'Explain why this group is hidden.', 'simple-editorial-comments' ),
+								}
+							),
+							createBlock( 'core/group', {}, groupInnerBlocks ),
+						]
+					);
+				},
+			},
 		],
 		to: [
 			{
