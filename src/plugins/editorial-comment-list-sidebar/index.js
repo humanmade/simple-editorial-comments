@@ -10,6 +10,24 @@ import { name as editorialCommentBlock } from '../../blocks/editorial-comment';
 export const name = 'simple-editorial-comments-list-sidebar';
 
 /**
+ * Reducer function to recursively select all comment blocks.
+ *
+ * @param {object[]} memo  Reducer carry object, a list of matching blocks.
+ * @param {object}   block The block being checked, may have inner blocks.
+ * @returns {object[]} Comment blocks.
+ */
+const findNestedCommentBlocks = ( memo, block ) => {
+	if ( block.name === editorialCommentBlock ) {
+		memo.push( block );
+		return memo;
+	}
+	if ( Array.isArray( block.innerBlocks ) && block.innerBlocks.length ) {
+		return block.innerBlocks.reduce( findNestedCommentBlocks, memo );
+	}
+	return memo;
+};
+
+/**
  * Render the comment list sidebar.
  *
  * @returns {React.ReactNode} Block editor sidebar React element.
@@ -17,8 +35,7 @@ export const name = 'simple-editorial-comments-list-sidebar';
 const EditorialCommentListSidebar = () => {
 	const { selectBlock } = useDispatch( 'core/editor' );
 	const comments = useSelect( ( select ) => {
-		return select( 'core/editor' ).getBlocks()
-			.filter( ( block ) => block.name === editorialCommentBlock );
+		return select( 'core/editor' ).getBlocks().reduce( findNestedCommentBlocks, [] );
 	} );
 
 	return (
