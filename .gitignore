@@ -5,3 +5,6 @@ vendor/
 # Built files
 build/
 package-lock.json
+
+# OS files
+.DS_Store
