@@ -16,7 +16,27 @@ function bootstrap() : void {
  * Register our block with the PHP framework.
  */
 function register_blocks() : void {
-	register_block_type(
-		dirname( __DIR__ ) . '/src/blocks/editorial-comment'
+	register_block_type_from_metadata(
+		dirname( __DIR__ ) . '/src/blocks/editorial-comment',
+		[
+			'render_callback' => __NAMESPACE__ . '\\do_not_render',
+		]
 	);
+	register_block_type_from_metadata(
+		dirname( __DIR__ ) . '/src/blocks/hidden-group',
+		[
+			'render_callback' => __NAMESPACE__ . '\\do_not_render',
+		]
+	);
+}
+
+/**
+ * A render callback that does not render. Prevents either editorial block from
+ * displaying on the site frontend.
+ *
+ * @param array $attributes Block attributes.
+ * @return string Empty string.
+ */
+function do_not_render( $attributes ) : string {
+	return '';
 }
