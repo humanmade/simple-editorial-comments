@@ -100,6 +100,10 @@ Any code merged into the `develop` branch will be build and committed to the `re
 
 ## Changelog
 
+**v0.1.1**
+
+- Pin specific commits of 3rd party GitHub actions to ensure predictable version selection
+
 **v0.1.0**
 
 - Initial release
