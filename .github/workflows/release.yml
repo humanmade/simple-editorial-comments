@@ -19,7 +19,7 @@ jobs:
         run: echo ::set-output name=VERSION::${GITHUB_REF/refs\/tags\//}
 
       - name: Create Release
-        uses: technote-space/release-github-actions@v7
+        uses: technote-space/release-github-actions@052f205daf62dff0c3ece009f07b38f3ec83e01a # v8.0.3
         with:
           BUILD_COMMAND_TARGET: 'build'
           CLEAN_TEST_TAG: true
