@@ -4,7 +4,7 @@
  * Description: Provide a block where editors can leave feedback to writers which will not render on the frontend.
  * Author: Human Made Limited
  * Author URI: https://humanmade.com
- * Version: 0.1.0
+ * Version: 0.1.1
  */
 
 namespace Simple_Editorial_Comments;
