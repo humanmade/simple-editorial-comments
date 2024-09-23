@@ -2,7 +2,7 @@ import React from 'react';
 
 import { Panel, PanelBody, PanelRow } from '@wordpress/components';
 import { useDispatch, useSelect } from '@wordpress/data';
-import { PluginSidebar } from '@wordpress/edit-post';
+import { PluginSidebar } from '@wordpress/editor';
 import { __ } from '@wordpress/i18n';
 
 import { name as editorialCommentBlock } from '../../blocks/editorial-comment';
