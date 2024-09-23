@@ -35,7 +35,7 @@ const findNestedCommentBlocks = ( memo, block ) => {
 const EditorialCommentListSidebar = () => {
 	const { selectBlock } = useDispatch( 'core/editor' );
 	const comments = useSelect( ( select ) => {
-		return select( 'core/editor' ).getBlocks().reduce( findNestedCommentBlocks, [] );
+		return select( 'core/block-editor' ).getBlocks().reduce( findNestedCommentBlocks, [] );
 	} );
 
 	return (
