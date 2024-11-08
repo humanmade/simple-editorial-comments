@@ -100,6 +100,11 @@ Any code merged into the `develop` branch will be build and committed to the `re
 
 ## Changelog
 
+**v1.0.0**
+
+- Update imports for WordPress 6.6 compatibility
+- Tag initial major release
+
 **v0.1.1**
 
 - Pin specific commits of 3rd party GitHub actions to ensure predictable version selection
