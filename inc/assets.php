@@ -17,18 +17,28 @@ function bootstrap() : void {
 	}
 
 	add_action( 'enqueue_block_editor_assets', __NAMESPACE__ . '\\enqueue_assets' );
+	add_action( 'enqueue_block_assets', __NAMESPACE__ . '\\enqueue_styles' );
+}
+
+/**
+ * Get the asset manifest for the active build.
+ *
+ * @return string|null Path to the manifest file, or null if none was found.
+ */
+function get_manifest() {
+	$plugin_path = trailingslashit( plugin_dir_path( dirname( __FILE__, 1 ) ) );
+
+	return Asset_Loader\Manifest\get_active_manifest( [
+		$plugin_path . 'build/development-asset-manifest.json',
+		$plugin_path . 'build/production-asset-manifest.json',
+	] );
 }
 
 /**
  * Enqueue the JS bundle in the block editor.
  */
 function enqueue_assets() : void {
-	$plugin_path = trailingslashit( plugin_dir_path( dirname( __FILE__, 1 ) ) );
-
-	$manifest = Asset_Loader\Manifest\get_active_manifest( [
-		$plugin_path . 'build/development-asset-manifest.json',
-		$plugin_path . 'build/production-asset-manifest.json',
-	] );
+	$manifest = get_manifest();
 
 	Asset_Loader\enqueue_asset(
 		$manifest,
@@ -44,8 +54,22 @@ function enqueue_assets() : void {
 			'handle'  => 'simple-editorial-comments',
 		]
 	);
+}
+
+/**
+ * Enqueue the editor styles.
+ *
+ * Hooked to enqueue_block_assets, not enqueue_block_editor_assets, so the
+ * styles are copied into the iframed editor. The blocks never render on the
+ * frontend, so skip it there.
+ */
+function enqueue_styles() : void {
+	if ( ! is_admin() ) {
+		return;
+	}
+
 	Asset_Loader\enqueue_asset(
-		$manifest,
+		get_manifest(),
 		'simple-editorial-comments.css',
 		[
 			'dependencies' => [],
