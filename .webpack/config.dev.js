@@ -10,7 +10,7 @@ module.exports = choosePort( 9090 ).then( ( port ) => {
 	return presets.development( {
 		name: 'simple-editorial-comments',
 		devServer: {
-			https: true,
+			server: 'https',
 			port,
 		},
 		externals,
