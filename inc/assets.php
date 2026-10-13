@@ -29,7 +29,7 @@ function get_manifest() {
 	$plugin_path = trailingslashit( plugin_dir_path( dirname( __FILE__, 1 ) ) );
 
 	return Asset_Loader\Manifest\get_active_manifest( [
-		$plugin_path . 'build/development-asset-manifest.json',
+		$plugin_path . 'build/asset-manifest.json',
 		$plugin_path . 'build/production-asset-manifest.json',
 	] );
 }
