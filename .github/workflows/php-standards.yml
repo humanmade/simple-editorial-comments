@@ -9,9 +9,6 @@ on:
   pull_request:
     branches:
       - '**'
-    paths:
-      - '**.php'
-      - '**.json'
 
 jobs:
   build:
