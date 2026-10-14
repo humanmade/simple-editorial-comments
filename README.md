@@ -100,6 +100,11 @@ Any code merged into the `develop` branch will be build and committed to the `re
 
 ## Changelog
 
+**v1.1.0**
+
+- Move the blocks to Block API v3 and load their styles in the iframed editor
+- Accept composer/installers v2 alongside v1
+
 **v1.0.0**
 
 - Update imports for WordPress 6.6 compatibility
