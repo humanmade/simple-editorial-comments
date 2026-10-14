@@ -1,5 +1,5 @@
 {
-	"apiVersion": 2,
+	"apiVersion": 3,
 	"name": "simple-editorial-comments/hidden-group",
 	"title": "Hidden Group",
 	"description": "Gather blocks in a hidden container which does not render on the frontend.",
